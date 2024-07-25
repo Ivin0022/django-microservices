@@ -1,3 +1,15 @@
-from django.shortcuts import render
+from rest_framework import serializers, viewsets
 
-# Create your views here.
+from .models import Question
+
+
+class QuestionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Question
+        fields = '__all__'
+
+
+class QuestionViewSets(viewsets.ModelViewSet):
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer
