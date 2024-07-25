@@ -48,8 +48,8 @@ INSTALLED_APPS = [
     'rest_framework',
 
     # local
-    'app1',
-    'app2',
+    # 'app1',
+    # 'app2',
 ]
 
 MIDDLEWARE = [

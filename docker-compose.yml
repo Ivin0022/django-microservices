@@ -40,6 +40,34 @@ services:
       - db
     command: /start.sh
 
+  app1:
+    << : *server
+    build:
+      context: .
+      dockerfile: ./compose/server/Dockerfile
+      args:
+        workdir: /usr/src/app/
+        port: 8010
+    environment:
+      - DJANGO_SETTINGS_MODULE=app1.config
+      - DATABASE_URL=postgres://postgres:postgres@database:5432/postgres
+    ports:
+      - "8010:8010"
+
+  app2:
+    << : *server
+    build:
+      context: .
+      dockerfile: ./compose/server/Dockerfile
+      args:
+        workdir: /usr/src/app/
+        port: 8020
+    environment:
+      - DJANGO_SETTINGS_MODULE=app2.config
+      - DATABASE_URL=postgres://postgres:postgres@database:5432/postgres
+    ports:
+      - "8020:8020"
+
   db:
     image: postgres
     volumes:
